@@ -1,0 +1,21 @@
+From https://git.pld-linux.org/?p=packages/ido-gtk2.git
+
+--- origsrc/ido-12.10.0.1/src/idoscalemenuitem.c	2012-09-09 05:40:16.000000000 -0500
++++ src/ido-12.10.0.1/src/idoscalemenuitem.c	2016-12-01 17:20:55.293345300 -0600
+@@ -481,12 +481,14 @@ ido_scale_menu_item_button_press_event (
+   translate_event_coordinates (menuitem, event->x_root, &x);
+   event->x_root = x;
+ 
+-  ubuntu_gtk_widget_set_has_grab (scale, TRUE);
++  // ubuntu_gtk_widget_set_has_grab (scale, TRUE);
++  GTK_OBJECT_FLAGS (scale) |= GTK_HAS_GRAB;
+ 
+   gtk_widget_event (priv->scale,
+                     ((GdkEvent *)(void*)(event)));
+ 
+-  ubuntu_gtk_widget_set_has_grab (scale, FALSE);
++  // ubuntu_gtk_widget_set_has_grab (scale, FALSE);
++  GTK_OBJECT_FLAGS (scale) &= ~(GTK_HAS_GRAB);
+ 
+   if (!priv->grabbed)
+     {

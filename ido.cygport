@@ -1,0 +1,29 @@
+inherit gnome2
+
+NAME="ido"
+VERSION=12.10.0.1
+RELEASE=1
+CATEGORY="Libs"
+SUMMARY="Indicator Display Objects library for GTK+2"
+DESCRIPTION="This library provides objects and widgets for use by indicators."
+HOMEPAGE="https://launchpad.net/indicators-gtk2"
+SRC_URI="${HOMEPAGE}/ido-gtk2/ido-${VERSION}/+download/ido-${VERSION}.tar.gz"
+SRC_DIR="ido-${VERSION}"
+PATCH_URI="
+	12.10.0-no-undefined.patch
+	12.10.0-ubuntu-gtk.patch
+"
+
+PKG_NAMES="libido0.1_0 libido0.1-devel"
+libido0_1_0_CONTENTS="
+	usr/bin/cygido-0.1-0.dll
+	usr/share/doc/
+"
+libido0_1_devel_CONTENTS="
+	usr/include/libido-0.1/
+	usr/lib/libido-0.1.dll.a
+	usr/lib/pkgconfig/libido-0.1.pc
+"
+
+# this hasn't been updated in far too long
+CFLAGS+=" -Wno-error=deprecated-declarations"

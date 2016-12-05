@@ -1,0 +1,22 @@
+--- origsrc/ido-12.10.0.1/configure.ac	2012-09-09 06:27:28.000000000 -0500
++++ src/ido-12.10.0.1/configure.ac	2016-12-01 17:02:02.306584400 -0600
+@@ -48,7 +48,7 @@ IDO_LT_CURRENT=lt_current
+ IDO_LT_REV=lt_revision
+ IDO_LT_AGE=lt_age
+ IDO_LT_VERSION="$IDO_LT_CURRENT:$IDO_LT_REV:$IDO_LT_AGE"
+-IDO_LT_LDFLAGS="-version-info $IDO_LT_VERSION"
++IDO_LT_LDFLAGS="-version-info $IDO_LT_VERSION -no-undefined"
+ 
+ AC_SUBST(IDO_LT_VERSION)
+ AC_SUBST(IDO_LT_LDFLAGS)
+--- origsrc/ido-12.10.0.1/src/Makefile.am	2012-09-09 05:52:41.000000000 -0500
++++ src/ido-12.10.0.1/src/Makefile.am	2016-12-01 17:01:49.868801300 -0600
+@@ -77,7 +77,7 @@ libidoinclude_HEADERS =			\
+ 
+ libido_0_1_la_LIBADD = $(GTK_LIBS) $(LIBM)
+ libido_0_1_la_LDFLAGS =                 \
+-	$(GTK_LT_LDFLAGS)               \
++	$(IDO_LT_LDFLAGS)               \
+ 	$(COVERAGE_LDFLAGS)
+ 
+ DISTCLEANFILES =			\
